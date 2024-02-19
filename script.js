@@ -17,26 +17,35 @@ document.getElementById('cityInput').addEventListener('keypress', function(event
     fetchWeather(city);
   });
 
-function fetchWeather(city) {
+
+  function fetchWeather(city) {
     const apiKey = config.MY_API_KEY;
     const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
-  
+
     fetch(apiUrl)
       .then(response => response.json())
       .then(data => {
         displayWeather(data);
-        fetchSunriseSunset(city, apiKey); // Fetch sunrise and sunset times
-        const isRaining = data.weather.some(weather => weather.main.toLowerCase() === 'rain');
+        fetchSunriseSunset(city, apiKey); // Fetch sunrise and sunset times 
+        const isRaining = data.weather.some(weather => weather.main.toLowerCase() === 'rain' || weather.main.toLowerCase() === 'drizzle');
         if (isRaining) {
-            makeItRain();
+            const rainElements = document.getElementsByClassName('rain');
+            for (let i = 0; i < rainElements.length; i++) {
+                rainElements[i].style.visibility = 'visible';
+            }
+        } else {
+            const rainElements = document.getElementsByClassName('rain');
+            for (let i = 0; i < rainElements.length; i++) {
+                rainElements[i].style.visibility = 'hidden';
+            }
         }
-        
-      })
+    })
       .catch(error => {
         console.log('Error fetching weather data:', error);
         document.getElementById('weatherResult').innerHTML = 'Error fetching weather data. Please try again later.';
       });
-  }
+}
+
   
   function fetchSunriseSunset(city, apiKey) {
     const sunriseSunsetUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`;
@@ -69,7 +78,7 @@ function displayWeather(data) {
     const description = data.weather[0].description;
   
     let weatherIcon;
-    if (description.includes('rain')) {
+    if (description.includes('rain') || description.includes('drizzle')) {
       weatherIcon = '<img class="weather-icon" src="rainy.png" alt="Rainy">';
     } else if (description.includes('clear')) {
       weatherIcon = '<img class="weather-icon" src="sun.png" alt="Sunny">';
@@ -93,48 +102,3 @@ function displayWeather(data) {
     document.getElementById('weatherResult').innerHTML = weatherHtml;
   }
 
-  var makeItRain = function() {
-    //clear out everything
-    $('.rain').empty();
-  
-    var increment = 0;
-    var drops = "";
-    var backDrops = "";
-  
-    while (increment < 100) {
-      //couple random numbers to use for various randomizations
-      //random number between 98 and 1
-      var randoHundo = (Math.floor(Math.random() * (98 - 1 + 1) + 1));
-      //random number between 5 and 2
-      var randoFiver = (Math.floor(Math.random() * (5 - 2 + 1) + 2));
-      //increment
-      increment += randoFiver;
-      //add in a new raindrop with various randomizations to certain CSS properties
-      drops += '<div class="drop" style="left: ' + increment + '%; bottom: ' + (randoFiver + randoFiver - 1 + 100) + '%; animation-delay: 0.' + randoHundo + 's; animation-duration: 0.5' + randoHundo + 's;"><div class="stem" style="animation-delay: 0.' + randoHundo + 's; animation-duration: 0.5' + randoHundo + 's;"></div><div class="splat" style="animation-delay: 0.' + randoHundo + 's; animation-duration: 0.5' + randoHundo + 's;"></div></div>';
-      backDrops += '<div class="drop" style="right: ' + increment + '%; bottom: ' + (randoFiver + randoFiver - 1 + 100) + '%; animation-delay: 0.' + randoHundo + 's; animation-duration: 0.5' + randoHundo + 's;"><div class="stem" style="animation-delay: 0.' + randoHundo + 's; animation-duration: 0.5' + randoHundo + 's;"></div><div class="splat" style="animation-delay: 0.' + randoHundo + 's; animation-duration: 0.5' + randoHundo + 's;"></div></div>';
-    }
-  
-    $('.rain.front-row').append(drops);
-    $('.rain.back-row').append(backDrops);
-  }
-  
-  $('.splat-toggle.toggle').on('click', function() {
-    $('body').toggleClass('splat-toggle');
-    $('.splat-toggle.toggle').toggleClass('active');
-    makeItRain();
-  });
-  
-  $('.back-row-toggle.toggle').on('click', function() {
-    $('body').toggleClass('back-row-toggle');
-    $('.back-row-toggle.toggle').toggleClass('active');
-    makeItRain();
-  });
-  
-  $('.single-toggle.toggle').on('click', function() {
-    $('body').toggleClass('single-toggle');
-    $('.single-toggle.toggle').toggleClass('active');
-    makeItRain();
-  });
-  
-  
-  
