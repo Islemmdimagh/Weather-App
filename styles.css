@@ -1,0 +1,341 @@
+* {
+    box-sizing: border-box;
+  }
+  
+  body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    background-color: white;
+    font-family: 'Knewave', cursive;
+    transition: background-color 0.5s ease;
+  }
+
+  .day {
+    background-color: #9fbec2; /* Bright background color for daytime */
+  }
+  
+  .night {
+    background-color: #5b6362; /* Dark background color for nighttime */
+  }
+  
+  .container {
+    text-align: center;
+  }
+  
+  .search-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  
+  label {
+    max-width: 200px;
+    margin-right: 10px;
+    position: relative;
+  }
+  
+  input {
+    width: calc(100% - 30px);
+    padding: 10px;
+    background-color: white;
+    border: 2px solid black;
+    color: #111;
+    font-size: 15px;
+    box-shadow: 3px 1px 0px 2px, 0px -1px 0px 2px rgba(0, 0, 0, 0.62);
+    height: 38px;
+    transform: skew(-3deg, 1deg);
+    font-family: 'Knewave', cursive;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+  
+  input:focus,
+  input:valid {
+    outline: none;
+  }
+  
+  ul {
+    position: absolute;
+    top: 38px;
+    left: -4px;
+    margin: 0;
+    list-style: none;
+    padding-left: 22px;
+    position: absolute;
+    display: flex;
+    pointer-events: none;
+    transition: 200ms;
+  }
+  
+  ul li {
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: transparent;
+    pointer-events: none;
+    transition: 500ms ease-in-out;
+  }
+  
+  ul li::selection {
+    color: transparent;
+  }
+  
+  ul li::after,
+  ul li::before {
+    color: black;
+    position: absolute;
+    transition: 500ms ease-in-out;
+  }
+  
+  ul li::before {
+    top: -20px;
+  }
+  
+  ul li::after {
+    top: -63px;
+    transform: scale(0) rotate(210deg);
+    filter: blur(20px);
+  }
+  
+  ul li:nth-child(1)::before {
+    content: "s";
+    transition-delay: 200ms;
+  }
+  
+  ul li:nth-child(2)::before {
+    content: "e";
+    transition-delay: 400ms;
+  }
+  
+  ul li:nth-child(3)::before {
+    content: "a";
+    transition-delay: 600ms;
+  }
+  
+  ul li:nth-child(4)::before {
+    content: "r";
+    transition-delay: 800ms;
+  }
+  
+  ul li:nth-child(5)::before {
+    content: "c";
+    transition-delay: 1000ms;
+  }
+  
+  ul li:nth-child(6)::before {
+    content: "h";
+    transition-delay: 1200ms;
+  }
+  
+  button {
+    height: 38px;
+    background-color: black;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    transform: skew(-3deg, 1deg);
+    font-family: 'Knewave', cursive;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+  
+  .container {
+    max-width: 600px;
+    margin: 50px auto;
+    text-align: center;
+  }
+  
+  .weather-box {
+    background-color: #f5f5f5;
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 20px;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+  }
+  
+  .weather-info {
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .weather-info p {
+    margin: 5px 0;
+  }
+  
+  .weather-info h2 {
+    font-size: 2.5em;
+    margin: 0;
+  }
+  
+  .weather-icon {
+    width: 50px;
+    height: auto;
+    margin-top: 10px;
+  }
+  
+  @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap'); /* Importing Roboto font */
+  body {
+    font-family: 'Roboto', sans-serif; /* Applying Roboto font to the entire app */
+  }
+
+  .rain {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+  }
+  
+  .rain.back-row {
+    display: none;
+    z-index: 1;
+    bottom: 60px;
+    opacity: 0.5;
+  }
+  
+  body.back-row-toggle .rain.back-row {
+    display: block;
+  }
+  
+  .drop {
+    position: absolute;
+    bottom: 100%;
+    width: 15px;
+    height: 120px;
+    pointer-events: none;
+    animation: drop 0.5s linear infinite;
+  }
+  
+  @keyframes drop {
+    0% {
+      transform: translateY(0vh);
+    }
+    75% {
+      transform: translateY(90vh);
+    }
+    100% {
+      transform: translateY(90vh);
+    }
+  }
+  
+  .stem {
+    width: 1px;
+    height: 60%;
+    margin-left: 7px;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.25));
+    animation: stem 0.5s linear infinite;
+  }
+  
+  @keyframes stem {
+    0% {
+      opacity: 1;
+    }
+    65% {
+      opacity: 1;
+    }
+    75% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+  
+  .splat {
+    width: 15px;
+    height: 10px;
+    border-top: 2px dotted rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    opacity: 1;
+    transform: scale(0);
+    animation: splat 0.5s linear infinite;
+    display: none;
+  }
+  
+  body.splat-toggle .splat {
+    display: block;
+  }
+  
+  @keyframes splat {
+    0% {
+      opacity: 1;
+      transform: scale(0);
+    }
+    80% {
+      opacity: 1;
+      transform: scale(0);
+    }
+    90% {
+      opacity: 0.5;
+      transform: scale(1);
+    }
+    100% {
+      opacity: 0;
+      transform: scale(1.5);
+    }
+  }
+  
+  .toggles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 3;
+  }
+  
+  .toggle {
+    position: absolute;
+    left: 20px;
+    width: 50px;
+    height: 50px;
+    line-height: 51px;
+    box-sizing: border-box;
+    text-align: center;
+    font-family: sans-serif;
+    font-size: 10px;
+    font-weight: bold;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: rgba(0, 0, 0, 0.5);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .toggle:hover {
+    background-color: rgba(255, 255, 255, 0.25);
+  }
+  
+  .toggle:active {
+    background-color: rgba(255, 255, 255, 0.3);
+  }
+  
+  .toggle.active {
+    background-color: rgba(255, 255, 255, 0.4);
+  }
+  
+  .splat-toggle {
+    top: 20px;
+  }
+  
+  .back-row-toggle {
+    top: 90px;
+    line-height: 12px;
+    padding-top: 14px;
+  }
+  
+  .single-toggle {
+    top: 160px;
+  }
+  
+  body.single-toggle .drop {
+    display: none;
+  }
+  
+  body.single-toggle .drop:nth-child(10) {
+    display: block;
+  }
+  
