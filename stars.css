@@ -1,0 +1,85 @@
+/* stars.css */
+
+body {
+    background-color: #000; /* Set background color to black */
+}
+
+/* Create stars using pseudo-elements */
+.stars {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+    visibility: hidden;
+}
+
+.stars::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1px;
+    height: 1px;
+    background-color: #fff; /* Color of the stars */
+    box-shadow: 
+        /* Randomly position stars */
+        calc(1vw * 50) calc(1vh * 10) white,
+        calc(1vw * 60) calc(1vh * 20) white,
+        calc(1vw * 20) calc(1vh * 15) white,
+        calc(1vw * 80) calc(1vh * 25) white,
+        calc(1vw * 90) calc(1vh * 5) white,
+        calc(1vw * 45) calc(1vh * 30) white,
+        calc(1vw * 35) calc(1vh * 40) white,
+        calc(1vw * 65) calc(1vh * 50) white,
+        calc(1vw * 10) calc(1vh * 60) white,
+        calc(1vw * 85) calc(1vh * 55) white,
+        calc(1vw * 30) calc(1vh * 65) white,
+        calc(1vw * 75) calc(1vh * 75) white,
+        calc(1vw * 50) calc(1vh * 80) white,
+        calc(1vw * 25) calc(1vh * 85) white,
+        calc(1vw * 70) calc(1vh * 90) white,
+        calc(1vw * 15) calc(1vh * 95) white,
+        calc(1vw * 60) calc(1vh * 3) white,
+        calc(1vw * 40) calc(1vh * 15) white,
+        calc(1vw * 80) calc(1vh * 35) white,
+        calc(1vw * 20) calc(1vh * 70) white,
+        calc(1vw * 90) calc(1vh * 80) white,
+        calc(1vw * 5) calc(1vh * 90) white,
+        calc(1vw * 85) calc(1vh * 95) white,
+        calc(1vw * 30) calc(1vh * 25) white,
+        calc(1vw * 70) calc(1vh * 45) white,
+        calc(1vw * 40) calc(1vh * 55) white,
+        calc(1vw * 60) calc(1vh * 65) white,
+        calc(1vw * 20) calc(1vh * 80) white,
+        calc(1vw * 80) calc(1vh * 90) white,
+        calc(1vw * 10) calc(1vh * 95) white,
+        calc(1vw * 90) calc(1vh * 10) white,
+        calc(1vw * 15) calc(1vh * 30) white,
+        calc(1vw * 85) calc(1vh * 50) white,
+        calc(1vw * 50) calc(1vh * 60) white,
+        calc(1vw * 35) calc(1vh * 70) white,
+        calc(1vw * 65) calc(1vh * 75) white,
+        calc(1vw * 25) calc(1vh * 85) white,
+        calc(1vw * 75) calc(1vh * 95) white,
+        calc(1vw * 30) calc(1vh * 20) white,
+        calc(1vw * 70) calc(1vh * 40) white,
+        calc(1vw * 40) calc(1vh * 50) white,
+        calc(1vw * 60) calc(1vh * 65) white,
+        calc(1vw * 20) calc(1vh * 80) white,
+        calc(1vw * 80) calc(1vh * 90) white,
+        calc(1vw * 10) calc(1vh * 95) white,
+        calc(1vw * 90) calc(1vh * 10) white,
+        calc(1vw * 15) calc(1vh * 30) white,
+        calc(1vw * 85) calc(1vh * 50) white,
+        calc(1vw * 50) calc(1vh * 60) white,
+        calc(1vw * 35) calc(1vh * 70) white,
+        calc(1vw * 65) calc(1vh * 75) white,
+        calc(1vw * 25) calc(1vh * 85) white,
+        calc(1vw * 75) calc(1vh * 95) white,
+        calc(1vw * 30) calc(1vh * 20) white,
+        calc(1vw * 70) calc(1vh * 40) white,
+        calc(1vw * 40) calc(1vh * 50) white,
+        calc(1vw * 60) calc(1vh * 65) white
+}

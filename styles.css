@@ -22,7 +22,25 @@
   .night {
     background-color: #5b6362; /* Dark background color for nighttime */
   }
+
+  .clear-night {
+    background-image: url('Screenshot 2024-02-22 185511.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
   
+  .cloudy-night {
+    background-image: url('HD-wallpaper-moon-clouds-night-bw.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  .cloudy-day {
+    background-image: url('pngtree-cloudy-sky-background-picture-image_2375517.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
   .container {
     text-align: center;
   }

@@ -23,28 +23,55 @@ document.getElementById('cityInput').addEventListener('keypress', function(event
     const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
 
     fetch(apiUrl)
-      .then(response => response.json())
-      .then(data => {
-        displayWeather(data);
-        fetchSunriseSunset(city, apiKey); // Fetch sunrise and sunset times 
-        const isRaining = data.weather.some(weather => weather.main.toLowerCase() === 'rain' || weather.main.toLowerCase() === 'drizzle');
-        if (isRaining) {
-            const rainElements = document.getElementsByClassName('rain');
-            for (let i = 0; i < rainElements.length; i++) {
-                rainElements[i].style.visibility = 'visible';
+        .then(response => response.json())
+        .then(data => {
+            displayWeather(data);
+            fetchSunriseSunset(city, apiKey); // Fetch sunrise and sunset times 
+
+            // Check weather conditions and time of day
+            const isClearNight = data.weather.some(weather => weather.main.toLowerCase() === 'clear') && !isNightTime(data);
+            const isCloudyNight = data.weather.some(weather => weather.main.toLowerCase() === 'clouds') && !isNightTime(data);
+            const isCloudyDay = data.weather.some(weather => weather.main.toLowerCase() === 'clouds') && isNightTime(data);
+
+            // Update body class based on weather conditions
+            if (isClearNight) {
+                document.body.className = 'clear-night';
+            } else if (isCloudyNight) {
+                document.body.className = 'cloudy-night';
+            } else if (isCloudyDay) {
+                document.body.className = 'cloudy-day';
+            } else {
+                document.body.className = ''; // Default background if none of the conditions match
             }
-        } else {
-            const rainElements = document.getElementsByClassName('rain');
-            for (let i = 0; i < rainElements.length; i++) {
-                rainElements[i].style.visibility = 'hidden';
+
+            const isRaining = data.weather.some(weather => weather.main.toLowerCase() === 'rain' || weather.main.toLowerCase() === 'drizzle');
+            if (isRaining) {
+                const rainElements = document.getElementsByClassName('rain');
+                for (let i = 0; i < rainElements.length; i++) {
+                    rainElements[i].style.visibility = 'visible';
+                }
+            } else {
+                const rainElements = document.getElementsByClassName('rain');
+                for (let i = 0; i < rainElements.length; i++) {
+                    rainElements[i].style.visibility = 'hidden';
+                }
             }
-        }
-    })
-      .catch(error => {
-        console.log('Error fetching weather data:', error);
-        document.getElementById('weatherResult').innerHTML = 'Error fetching weather data. Please try again later.';
-      });
+        })
+        .catch(error => {
+            console.log('Error fetching weather data:', error);
+            document.getElementById('weatherResult').innerHTML = 'Error fetching weather data. Please try again later.';
+        });
 }
+
+function isNightTime(data) {
+    const sunriseTimestamp = data.sys.sunrise * 1000; // Convert seconds to milliseconds
+    const sunsetTimestamp = data.sys.sunset * 1000; // Convert seconds to milliseconds
+    const currentTime = new Date().getTime();
+
+    return currentTime > sunriseTimestamp && currentTime < sunsetTimestamp;
+}
+
+
 
   
   function fetchSunriseSunset(city, apiKey) {
