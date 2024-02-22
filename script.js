@@ -106,13 +106,13 @@ function displayWeather(data) {
   
     let weatherIcon;
     if (description.includes('rain') || description.includes('drizzle')) {
-      weatherIcon = '<img class="weather-icon" src="rainy.png" alt="Rainy">';
+      weatherIcon = '<img class="weather-icon" src="images/rainy.png" alt="Rainy">';
     } else if (description.includes('clear')) {
-      weatherIcon = '<img class="weather-icon" src="sun.png" alt="Sunny">';
+      weatherIcon = '<img class="weather-icon" src="images/sun.png" alt="Sunny">';
     } else if (description.includes('cloud')) {
-      weatherIcon = '<img class="weather-icon" src="cloudy.png" alt="Cloudy">';
+      weatherIcon = '<img class="weather-icon" src="images/cloudy.png" alt="Cloudy">';
     } else {
-      weatherIcon = '<img class="weather-icon" src="default_icon.png" alt="Weather">';
+      weatherIcon = '<img class="weather-icon" src="images/default_icon.png" alt="Weather">';
     }
   
     const weatherHtml = `
